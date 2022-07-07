@@ -5,7 +5,7 @@ class Rectangle:
     """A 4-sided flat shape with straight sides."""
 
     def __init__(self, position, size):
-        """Constructs a new Rectangle."""
+        """Constructs a new brick shape."""
         self._position = Point()
         self._size = Point() 
 

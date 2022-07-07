@@ -6,12 +6,12 @@ from game.casting.color import Color
 # -------------------------------------------------------------------------------------------------- 
 
 # GAME
-GAME_NAME = "Batter"
+GAME_NAME = "Tetris"
 FRAME_RATE = 60
 
 # SCREEN
-SCREEN_WIDTH = 1040
-SCREEN_HEIGHT = 680
+SCREEN_WIDTH = 680
+SCREEN_HEIGHT = 1040
 CENTER_X = SCREEN_WIDTH / 2
 CENTER_Y = SCREEN_HEIGHT / 2
 
@@ -22,14 +22,14 @@ FIELD_LEFT = 0
 FIELD_RIGHT = SCREEN_WIDTH
 
 # FONT
-FONT_FILE = "batter-complete/batter/assets/fonts/zorque.otf"
+FONT_FILE = "assets/fonts/zorque.otf"
 FONT_SMALL = 32
 FONT_LARGE = 48
 
 # SOUND
-BOUNCE_SOUND = "batter-complete/batter/assets/sounds/boing.wav"
-WELCOME_SOUND = "batter-complete/batter/assets/sounds/start.wav"
-OVER_SOUND = "batter-complete/batter/assets/sounds/over.wav"
+BOUNCE_SOUND = "assets/sounds/boing.wav"
+WELCOME_SOUND = "assets/sounds/start.wav"
+OVER_SOUND = "assets/sounds/over.wav"
 
 # TEXT
 ALIGN_CENTER = 0
@@ -44,7 +44,8 @@ PURPLE = Color(255, 0, 255)
 # KEYS
 LEFT = "left"
 RIGHT = "right"
-SPACE = "space"
+ROTATE_RIGHT = "up"
+ROTATE_LEFT = "space"
 ENTER = "enter"
 PAUSE = "p"
 
@@ -56,7 +57,7 @@ IN_PLAY = 3
 GAME_OVER = 4
 
 # LEVELS
-LEVEL_FILE = "batter-complete/batter/assets/data/level-{:03}.txt"
+LEVEL_FILE = "assets/data/level-{:03}.txt"
 BASE_LEVELS = 5
 
 # -------------------------------------------------------------------------------------------------- 
@@ -76,43 +77,117 @@ RELEASE = 6
 # CASTING CONSTANTS
 # -------------------------------------------------------------------------------------------------- 
 
-# STATS
-STATS_GROUP = "stats"
-DEFAULT_LIVES = 3
-MAXIMUM_LIVES = 5
-
 # HUD
 HUD_MARGIN = 15
 LEVEL_GROUP = "level"
-LIVES_GROUP = "lives"
 SCORE_GROUP = "score"
 LEVEL_FORMAT = "LEVEL: {}"
-LIVES_FORMAT = "LIVES: {}"
 SCORE_FORMAT = "SCORE: {}"
-
-# BALL
-BALL_GROUP = "balls"
-BALL_IMAGE = "batter-complete/batter/assets/images/000.png"
-BALL_WIDTH = 28
-BALL_HEIGHT = 28
-BALL_VELOCITY = 6
-
-# RACKET
-RACKET_GROUP = "rackets"
-RACKET_IMAGES = [f"batter-complete/batter/assets/images/{n:03}.png" for n in range(100, 103)]
-RACKET_WIDTH = 106
-RACKET_HEIGHT = 28
-RACKET_RATE = 6
-RACKET_VELOCITY = 7
 
 # BRICK
 BRICK_GROUP = "bricks"
-BRICK_IMAGES = {
-    "b": [f"batter-complete/batter/assets/images/{i:03}.png" for i in range(10,19)],
-    "g": [f"batter-complete/batter/assets/images/{i:03}.png" for i in range(20,29)],
-    "p": [f"batter-complete/batter/assets/images/{i:03}.png" for i in range(30,39)],
-    "y": [f"batter-complete/batter/assets/images/{i:03}.png" for i in range(40,49)]
-}
+S = [['.....',
+    '......',
+    '..00..',
+    '.00...',
+    '.....'],
+    ['.....',
+    '..0..',
+    '..00.',
+    '...0.',
+    '.....']]
+
+Z = [['.....',
+      '.....',
+      '.00..',
+      '..00.',
+      '.....'],
+     ['.....',
+      '..0..',
+      '.00..',
+      '.0...',
+      '.....']]
+
+I = [['..0..',
+      '..0..',
+      '..0..',
+      '..0..',
+      '.....'],
+     ['.....',
+      '0000.',
+      '.....',
+      '.....',
+      '.....']]
+
+O = [['.....',
+      '.....',
+      '.00..',
+      '.00..',
+      '.....']]
+
+J = [['.....',
+      '.0...',
+      '.000.',
+      '.....',
+      '.....'],
+     ['.....',
+      '..00.',
+      '..0..',
+      '..0..',
+      '.....'],
+     ['.....',
+      '.....',
+      '.000.',
+      '...0.',
+      '.....'],
+     ['.....',
+      '..0..',
+      '..0..',
+      '.00..',
+      '.....']]
+
+L = [['.....',
+      '...0.',
+      '.000.',
+      '.....',
+      '.....'],
+     ['.....',
+      '..0..',
+      '..0..',
+      '..00.',
+      '.....'],
+     ['.....',
+      '.....',
+      '.000.',
+      '.0...',
+      '.....'],
+     ['.....',
+      '.00..',
+      '..0..',
+      '..0..',
+      '.....']]
+
+T = [['.....',
+      '..0..',
+      '.000.',
+      '.....',
+      '.....'],
+     ['.....',
+      '..0..',
+      '..00.',
+      '..0..',
+      '.....'],
+     ['.....',
+      '.....',
+      '.000.',
+      '..0..',
+      '.....'],
+     ['.....',
+      '..0..',
+      '.00..',
+      '..0..',
+      '.....']]
+SHAPE_COLORS = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0), (255, 165, 0), (0, 0, 255), (128, 0, 128)]
 BRICK_WIDTH = 80
 BRICK_HEIGHT = 28
 BRICK_DELAY = 0.5

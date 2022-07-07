@@ -35,7 +35,7 @@ class Body:
         """
         return self._velocity
 
-    def get_rectangle(self):
+    def get_body(self):
         """Gets the rectangle enclosing the body.
         
         Returns:
