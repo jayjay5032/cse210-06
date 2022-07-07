@@ -57,8 +57,7 @@ IN_PLAY = 3
 GAME_OVER = 4
 
 # LEVELS
-LEVEL_FILE = "assets/data/level-{:03}.txt"
-BASE_LEVELS = 5
+BASE_LEVELS = 99
 
 # -------------------------------------------------------------------------------------------------- 
 # SCRIPTING CONSTANTS
