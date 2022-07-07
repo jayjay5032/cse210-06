@@ -56,10 +56,6 @@ class SceneManager:
     def prepare_scene(self, scene, cast, script):
         if scene == NEW_GAME:
             self._prepare_new_game(cast, script)
-        elif scene == NEXT_LEVEL:
-            self._prepare_next_level(cast, script)
-        elif scene == TRY_AGAIN:
-            self._prepare_try_again(cast, script)
         elif scene == IN_PLAY:
             self._prepare_in_play(cast, script)
         elif scene == GAME_OVER:    
@@ -72,11 +68,8 @@ class SceneManager:
     def _prepare_new_game(self, cast, script):
         self._add_stats(cast)
         self._add_level(cast)
-        self._add_lives(cast)
         self._add_score(cast)
-        self._add_ball(cast)
         self._add_bricks(cast)
-        self._add_racket(cast)
         self._add_dialog(cast, ENTER_TO_START)
 
         self._add_initialize_script(script)
@@ -86,30 +79,8 @@ class SceneManager:
         self._add_output_script(script)
         self._add_unload_script(script)
         self._add_release_script(script)
-        
-    def _prepare_next_level(self, cast, script):
-        self._add_ball(cast)
-        self._add_bricks(cast)
-        self._add_racket(cast)
-        self._add_dialog(cast, PREP_TO_LAUNCH)
-
-        script.clear_actions(INPUT)
-        script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
-        self._add_output_script(script)
-        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
-        
-    def _prepare_try_again(self, cast, script):
-        self._add_ball(cast)
-        self._add_racket(cast)
-        self._add_dialog(cast, PREP_TO_LAUNCH)
-
-        script.clear_actions(INPUT)
-        script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
-        self._add_update_script(script)
-        self._add_output_script(script)
 
     def _prepare_in_play(self, cast, script):
-        self._activate_ball(cast)
         cast.clear_actors(DIALOG_GROUP)
 
         script.clear_actions(INPUT)
@@ -118,8 +89,6 @@ class SceneManager:
         self._add_output_script(script)
 
     def _prepare_game_over(self, cast, script):
-        self._add_ball(cast)
-        self._add_racket(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
 
         script.clear_actions(INPUT)
@@ -133,31 +102,6 @@ class SceneManager:
 
     def _add_bricks(self, cast):
         cast.clear_actors(BRICK_GROUP)
-
-       ''' with open(filename, 'r') as file:
-            reader = csv.reader(file, skipinitialspace=True)
-
-            for r, row in enumerate(reader):
-                for c, column in enumerate(row):
-
-                    x = FIELD_LEFT + c * BRICK_WIDTH
-                    y = FIELD_TOP + r * BRICK_HEIGHT
-                    color = column[0]
-                    frames = int(column[1])
-                    points = BRICK_POINTS 
-                    
-                    if frames == 1:
-                        points *= 2
-                    
-                    position = Point(x, y)
-                    size = Point(BRICK_WIDTH, BRICK_HEIGHT)
-                    velocity = Point(0, 0)
-                    # images = BRICK_IMAGES[color][0:frames]
-
-                    body = Body(position, size, velocity)
-
-                    brick = Brick(body. points)
-                    cast.add_actor(BRICK_GROUP, brick) '''
 
     def _add_dialog(self, cast, message):
         cast.clear_actors(DIALOG_GROUP)
