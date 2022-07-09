@@ -68,5 +68,5 @@ class Brick(Actor):
         
     def release(self):
         """Release the bricks in a random direction."""
-        velocity = Point(BRICK_VELOCITY, 0)
+        velocity = Point(-BRICK_VELOCITY, 0)
         self._body.set_velocity(velocity)
