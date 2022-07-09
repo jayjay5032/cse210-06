@@ -1,6 +1,13 @@
 from constants import *
 from game.casting.sound import Sound
 from game.scripting.action import Action
+from game.casting.ball import Ball
+from game.casting.body import Body
+from game.casting.brick import Brick
+from game.casting.image import Image
+from game.casting.label import Label
+from game.casting.point import Point
+from game.casting.racket import Racket
 
 
 class CollideBrickAction(Action):
@@ -25,3 +32,14 @@ class CollideBrickAction(Action):
                 points = brick.get_points()
                 stats.add_points(points)
                 cast.remove_actor(BRICK_GROUP, brick)
+                cast.remove_actor(BALL_GROUP, ball)
+                cast.clear_actors(BALL_GROUP)
+                x = CENTER_X - BALL_WIDTH / 2
+                y = SCREEN_HEIGHT - RACKET_HEIGHT - BALL_HEIGHT  
+                position = Point(x, y)
+                size = Point(BALL_WIDTH, BALL_HEIGHT)
+                velocity = Point(0, 0)
+                body = Body(position, size, velocity)
+                image = Image(BALL_IMAGE)
+                ball = Ball(body, image, True)
+                cast.add_actor(BALL_GROUP, ball)
