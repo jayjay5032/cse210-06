@@ -1,4 +1,7 @@
+import random
+from constants import *
 from game.casting.actor import Actor
+from game.casting.point import Point
 
 
 class Brick(Actor):
@@ -40,3 +43,23 @@ class Brick(Actor):
             A number representing the brick's points.
         """
         return self._points
+
+    def move_next(self):
+        """Moves the bat using its velocity."""
+        position = self._body.get_position()
+        velocity = self._body.get_velocity()
+        new_position = position.add(velocity)
+        self._body.set_position(new_position)
+    
+    def stop_moving(self):
+        """Stops the bat from moving."""
+        velocity = Point(0, 0)
+        self._body.set_velocity(velocity)
+        
+    def release(self):
+        """Release the ball in a random direction."""
+        rn = random.uniform(0.9, 1.1)
+        vx = random.choice([-BRICK_VELOCITY * rn, BRICK_VELOCITY * rn])
+        vy = -BRICK_VELOCITY
+        velocity = Point(vx, vy)
+        self._body.set_velocity(velocity)

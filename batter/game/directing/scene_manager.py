@@ -25,6 +25,7 @@ from game.scripting.end_drawing_action import EndDrawingAction
 from game.scripting.initialize_devices_action import InitializeDevicesAction
 from game.scripting.load_assets_action import LoadAssetsAction
 from game.scripting.move_ball_action import MoveBallAction
+from game.scripting.move_bricks_action import MoveBricksAction
 from game.scripting.move_racket_action import MoveRacketAction
 from game.scripting.play_sound_action import PlaySoundAction
 from game.scripting.release_devices_action import ReleaseDevicesAction
@@ -59,6 +60,7 @@ class SceneManager:
     INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
     MOVE_BALL_ACTION = MoveBallAction()
+    MOVE_BRICKS_ACTION = MoveBricksAction()
     MOVE_RACKET_ACTION = MoveRacketAction()
     RELEASE_DEVICES_ACTION = ReleaseDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     START_DRAWING_ACTION = StartDrawingAction(VIDEO_SERVICE)
@@ -124,6 +126,7 @@ class SceneManager:
 
     def _prepare_in_play(self, cast, script):
         self._activate_ball(cast)
+        self._activate_brick(cast)
         cast.clear_actors(DIALOG_GROUP)
 
         script.clear_actions(INPUT)
@@ -148,6 +151,12 @@ class SceneManager:
     def _activate_ball(self, cast):
         ball = cast.get_first_actor(BALL_GROUP)
         ball.release()
+
+    def _activate_brick(self, cast):
+        bricks = cast.get_actors(BRICK_GROUP)
+
+        for brick in bricks:
+            brick.release()
 
     def _add_ball(self, cast):
         cast.clear_actors(BALL_GROUP)
@@ -275,5 +284,6 @@ class SceneManager:
         script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_BRICKS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_RACKET_ACTION)
+        script.add_action(UPDATE, self.MOVE_BRICKS_ACTION)
         script.add_action(UPDATE, self.MOVE_RACKET_ACTION)
         script.add_action(UPDATE, self.CHECK_OVER_ACTION)
