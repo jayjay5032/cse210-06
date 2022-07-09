@@ -34,12 +34,3 @@ class CollideBrickAction(Action):
                 cast.remove_actor(BRICK_GROUP, brick)
                 cast.remove_actor(BALL_GROUP, ball)
                 cast.clear_actors(BALL_GROUP)
-                x = CENTER_X - BALL_WIDTH / 2
-                y = SCREEN_HEIGHT - RACKET_HEIGHT - BALL_HEIGHT  
-                position = Point(x, y)
-                size = Point(BALL_WIDTH, BALL_HEIGHT)
-                velocity = Point(0, 0)
-                body = Body(position, size, velocity)
-                image = Image(BALL_IMAGE)
-                ball = Ball(body, image, True)
-                cast.add_actor(BALL_GROUP, ball)

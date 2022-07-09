@@ -10,17 +10,24 @@ class MoveRacketAction(Action):
 
     def execute(self, cast, script, callback):
         racket = cast.get_first_actor(RACKET_GROUP)
-        body = racket.get_body()
-        velocity = body.get_velocity()
-        position = body.get_position()
-        x = position.get_x()
+        racketbody = racket.get_body()
+        racketvelocity = racketbody.get_velocity()
+        racketposition = racketbody.get_position()
+        racketx = racketposition.get_x()
+        racketposition = racketposition.add(racketvelocity)
         
-        position = position.add(velocity)
+        ball = cast.get_first_actor(BALL_GROUP)
+        ballbody = ball.get_body()
+        ballvelocity = racketvelocity
+        ballposition = ballbody.get_position()
+        ballposition = ballposition.add(ballvelocity)
 
-        if x < 0:
-            position = Point(0, position.get_y())
-        elif x > (SCREEN_WIDTH - RACKET_WIDTH):
-            position = Point(SCREEN_WIDTH - RACKET_WIDTH, position.get_y())
+        if racketx < 0:
+            racketposition = Point(0, racketposition.get_y())
+            ballposition = Point(RACKET_WIDTH/2 - BALL_WIDTH/2, ballposition.get_y())
+        elif racketx > (SCREEN_WIDTH - RACKET_WIDTH):
+            racketposition = Point(SCREEN_WIDTH - RACKET_WIDTH, racketposition.get_y())
+            ballposition = Point(SCREEN_WIDTH - RACKET_WIDTH/2 - BALL_WIDTH/2, ballposition.get_y())
             
-        body.set_position(position)
-        
+        racketbody.set_position(racketposition)
+        ballbody.set_position(ballposition)
