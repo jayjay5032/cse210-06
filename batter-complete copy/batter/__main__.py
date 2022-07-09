@@ -1,10 +1,10 @@
 from constants import *
 from game.directing.director import Director
-from game.services.video_service import VideoService
+from game.directing.scene_manager import SceneManager
 
 
 def main():
-    director = Director(VideoService)
+    director = Director(SceneManager.VIDEO_SERVICE)
     director.start_game()
 
 if __name__ == "__main__":
