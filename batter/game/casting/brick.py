@@ -45,21 +45,28 @@ class Brick(Actor):
         return self._points
 
     def move_next(self):
-        """Moves the bat using its velocity."""
+        """Moves the bricks using its velocity."""
         position = self._body.get_position()
         velocity = self._body.get_velocity()
         new_position = position.add(velocity)
         self._body.set_position(new_position)
+
+    def swing_left(self):
+        """Steers the bricks to the left."""
+        velocity = Point(-BRICK_VELOCITY, 0)
+        self._body.set_velocity(velocity)
+        
+    def swing_right(self):
+        """Steers the bricks to the right."""
+        velocity = Point(BRICK_VELOCITY, 0)
+        self._body.set_velocity(velocity)
     
     def stop_moving(self):
-        """Stops the bat from moving."""
+        """Stops the bricks from moving."""
         velocity = Point(0, 0)
         self._body.set_velocity(velocity)
         
     def release(self):
-        """Release the ball in a random direction."""
-        rn = random.uniform(0.9, 1.1)
-        vx = random.choice([-BRICK_VELOCITY * rn, BRICK_VELOCITY * rn])
-        vy = -BRICK_VELOCITY
-        velocity = Point(vx, vy)
+        """Release the bricks in a random direction."""
+        velocity = Point(BRICK_VELOCITY, 0)
         self._body.set_velocity(velocity)
