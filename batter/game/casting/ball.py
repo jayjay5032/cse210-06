@@ -54,8 +54,7 @@ class Ball(Actor):
         return self._image
         
     def release(self):
-        """Release the ball in a random direction."""
-        #rn = random.uniform(0.9, 1.1)
+        """Release the ball up."""
         vx = 0
         vy = -BALL_VELOCITY
         velocity = Point(vx, vy)

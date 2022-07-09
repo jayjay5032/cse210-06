@@ -28,6 +28,7 @@ from game.scripting.move_ball_action import MoveBallAction
 from game.scripting.move_bricks_action import MoveBricksAction
 from game.scripting.move_racket_action import MoveRacketAction
 from game.scripting.play_sound_action import PlaySoundAction
+from game.scripting.reload_ball_action import ReloadBallAction
 from game.scripting.release_devices_action import ReleaseDevicesAction
 from game.scripting.start_drawing_action import StartDrawingAction
 from game.scripting.timed_change_scene_action import TimedChangeSceneAction
@@ -62,6 +63,7 @@ class SceneManager:
     MOVE_BALL_ACTION = MoveBallAction()
     MOVE_BRICKS_ACTION = MoveBricksAction()
     MOVE_RACKET_ACTION = MoveRacketAction()
+    RELOAD_BALL_ACTION = ReloadBallAction()
     RELEASE_DEVICES_ACTION = ReleaseDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     START_DRAWING_ACTION = StartDrawingAction(VIDEO_SERVICE)
     UNLOAD_ASSETS_ACTION = UnloadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
@@ -125,7 +127,7 @@ class SceneManager:
         self._add_output_script(script)
 
     def _prepare_in_play(self, cast, script):
-        #self._activate_ball(cast)
+        self._activate_ball(cast)
         self._activate_brick(cast)
         cast.clear_actors(DIALOG_GROUP)
 
@@ -280,6 +282,9 @@ class SceneManager:
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
         script.add_action(UPDATE, self.MOVE_BALL_ACTION)
+        script.add_action(UPDATE, self.RELOAD_BALL_ACTION)
+        script.add_action(UPDATE, self.RELOAD_BALL_ACTION)
+        script.add_action(UPDATE, self.RELOAD_BALL_ACTION)
         script.add_action(UPDATE, self.MOVE_RACKET_ACTION)
         script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_BRICKS_ACTION)

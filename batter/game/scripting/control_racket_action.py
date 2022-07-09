@@ -1,6 +1,9 @@
 from constants import *
 from game.scripting.action import Action
-
+from game.casting.ball import Ball
+from game.casting.body import Body
+from game.casting.image import Image
+from game.casting.point import Point
 
 class ControlRacketAction(Action):
 
@@ -14,7 +17,8 @@ class ControlRacketAction(Action):
             racket.swing_left()
         elif self._keyboard_service.is_key_down(RIGHT): 
             racket.swing_right()  
-        elif self._keyboard_service.is_key_down(SPACE):
-            ball.release()
         else: 
-            racket.stop_moving()        
+            racket.stop_moving()
+
+        if self._keyboard_service.is_key_down(SPACE):    
+            ball.release()
