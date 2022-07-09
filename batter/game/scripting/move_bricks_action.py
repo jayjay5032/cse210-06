@@ -16,14 +16,20 @@ class MoveBricksAction(Action):
             body = i.get_body()
             velocity = body.get_velocity()
             position = body.get_position()
-            # x = position.get_x()
+            x = position.get_x()
         
             position = position.add(velocity)
 
-            '''if x < 0:
-                position = Point(0, position.get_y())
-            elif x > (SCREEN_WIDTH - RACKET_WIDTH):
-                position = Point(SCREEN_WIDTH - RACKET_WIDTH, position.get_y())'''
+            if x < 0 - (BRICK_WIDTH * .25):
+                velocity = Point(BRICK_VELOCITY, 0)
+            elif x > (SCREEN_WIDTH - (BRICK_WIDTH * .75)):
+                velocity = Point(-BRICK_VELOCITY, 0)
                 
             body.set_position(position)
+
+            for i in bricks:
+                
+                body = i.get_body()
+                body.set_velocity(velocity)
+        
         
