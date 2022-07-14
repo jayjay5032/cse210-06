@@ -68,6 +68,20 @@ class Cast:
         if group in self._actors.keys():
             result = self._actors[group][0]
         return result
+    
+    def get_last_actor(self, group):
+        """Gets the first actor in the given group.
+        
+        Args:
+            group: A string containing the name of the group.
+            
+        Returns:
+            An instance of Actor.
+        """
+        result = None
+        if group in self._actors.keys():
+            result = self._actors[group][len(self._actors[group]) -1]
+        return result
 
     def remove_actor(self, group, actor):
         """Removes an actor from the given group.

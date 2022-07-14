@@ -1,3 +1,4 @@
+from importlib import reload
 from constants import *
 from game.casting.point import Point
 from game.scripting.action import Action
@@ -9,31 +10,18 @@ class MoveBricksAction(Action):
         pass
 
     def execute(self, cast, script, callback):
-        bricks = cast.get_actors(BRICK_GROUP)
+        bricks = cast.get_actors(BRICK_GROUP)            
+        firstbrick= cast.get_first_actor(BRICK_GROUP)
+        first_x = firstbrick.get_body().get_position().get_x()
+        lastbrick = cast.get_last_actor(BRICK_GROUP)
+        last_x = lastbrick.get_body().get_position().get_x()
 
-        for i in bricks:
-
-            body = i.get_body()
-            velocity = body.get_velocity()
-            position = body.get_position()
-            x = position.get_x()
         
-            position = position.add(velocity)
-
-            if x < 0 - (BRICK_WIDTH - .1):
-
-                 velocity = Point(BRICK_VELOCITY, 0)
-
-            elif x > (SCREEN_WIDTH - (BRICK_WIDTH - .1)):
-           
-                 velocity = Point(-BRICK_VELOCITY, 0)
-
-                
-            body.set_position(position)
-
-            for i in bricks:
-                
-                body = i.get_body()
-                body.set_velocity(velocity)
+        for i in bricks:
+            if first_x <= 0:
+                    i.swing_right()
+            elif last_x + BRICK_WIDTH >= SCREEN_WIDTH:
+                    i.swing_left()
+            i.move_next()
         
         

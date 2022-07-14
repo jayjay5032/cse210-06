@@ -156,7 +156,6 @@ class SceneManager:
 
     def _activate_brick(self, cast):
         bricks = cast.get_actors(BRICK_GROUP)
-
         for brick in bricks:
             brick.release()
 
