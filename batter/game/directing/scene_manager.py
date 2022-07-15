@@ -1,4 +1,5 @@
 import csv
+from re import L
 from constants import *
 from game.casting.animation import Animation
 from game.casting.ball import Ball
@@ -173,9 +174,11 @@ class SceneManager:
 
     def _add_bricks(self, cast):
         cast.clear_actors(BRICK_GROUP)
-        
         stats = cast.get_first_actor(STATS_GROUP)
-        level = stats.get_level() % BASE_LEVELS
+        if stats.get_level() == BASE_LEVELS:
+            level = BASE_LEVELS
+        else:
+            level = stats.get_level() % BASE_LEVELS
         filename = LEVEL_FILE.format(level)
 
         with open(filename, 'r') as file:
