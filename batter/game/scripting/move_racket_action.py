@@ -22,14 +22,16 @@ class MoveRacketAction(Action):
         racketbody.set_position(racketposition)
         
         # If ball is on the racket then follow it, otherwise don't follow
-        ball = cast.get_first_actor(BALL_GROUP)
-        ballbody = ball.get_body()
-        ballposition = ballbody.get_position()
-        if ballposition.get_y() == SCREEN_HEIGHT - BALL_HEIGHT - RACKET_HEIGHT:
-            ballvelocity = racketvelocity
-            ballposition = ballposition.add(ballvelocity)
-            if racketx < 0:
-                ballposition = Point(RACKET_WIDTH/2 - BALL_WIDTH/2, ballposition.get_y())
-            elif racketx > (SCREEN_WIDTH - RACKET_WIDTH):
-                ballposition = Point(SCREEN_WIDTH - RACKET_WIDTH/2 - BALL_WIDTH/2, ballposition.get_y())
-            ballbody.set_position(ballposition)
+        balls = cast.get_actors(BALL_GROUP)
+        if len(balls) != 0:
+            ball = cast.get_first_actor(BALL_GROUP)
+            ballbody = ball.get_body()
+            ballposition = ballbody.get_position()
+            if ballposition.get_y() == SCREEN_HEIGHT - BALL_HEIGHT - RACKET_HEIGHT:
+                ballvelocity = racketvelocity
+                ballposition = ballposition.add(ballvelocity)
+                if racketx < 0:
+                    ballposition = Point(RACKET_WIDTH/2 - BALL_WIDTH/2, ballposition.get_y())
+                elif racketx > (SCREEN_WIDTH - RACKET_WIDTH):
+                    ballposition = Point(SCREEN_WIDTH - RACKET_WIDTH/2 - BALL_WIDTH/2, ballposition.get_y())
+                ballbody.set_position(ballposition)

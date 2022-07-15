@@ -128,7 +128,6 @@ class SceneManager:
         self._add_output_script(script)
 
     def _prepare_in_play(self, cast, script):
-        self._activate_ball(cast)
         self._activate_brick(cast)
         cast.clear_actors(DIALOG_GROUP)
 
