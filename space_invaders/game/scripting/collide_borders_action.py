@@ -9,14 +9,14 @@ class CollideBordersAction(Action):
         self._audio_service = audio_service    
         
     def execute(self, cast, script, callback):
-        ball = cast.get_first_actor(BALL_GROUP)
-        body = ball.get_body()
+        bullet = cast.get_first_actor(BULLET_GROUP)
+        body = bullet.get_body()
         position = body.get_position()
         y = position.get_y()
 
                 
-        if y < FIELD_TOP - ((BALL_HEIGHT + HUD_MARGIN)*3):
-            cast.remove_actor(BALL_GROUP, ball)
+        if y < FIELD_TOP - ((BULLET_HEIGHT + HUD_MARGIN)*3):
+            cast.remove_actor(BULLET_GROUP, bullet)
             explode_sound = Sound(EXPLODE_SOUND)
             self._audio_service.play_sound(explode_sound)
             stats = cast.get_first_actor(STATS_GROUP)

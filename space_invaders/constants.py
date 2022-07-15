@@ -91,35 +91,35 @@ LEVEL_FORMAT = "LEVEL: {}"
 LIVES_FORMAT = "LIVES: {}"
 SCORE_FORMAT = "SCORE: {}"
 
-# BALL
-BALL_GROUP = "balls"
-BALL_IMAGE = "space_invaders/assets/images/000.png"
-BALL_WIDTH = 10
-BALL_HEIGHT = 28
-BALL_VELOCITY = 15
+# BULLET
+BULLET_GROUP = "bullets"
+BULLET_IMAGE = "space_invaders/assets/images/000.png"
+BULLET_WIDTH = 10
+BULLET_HEIGHT = 28
+BULLET_VELOCITY = 15
 
-# RACKET
-RACKET_GROUP = "rackets"
-RACKET_IMAGES = [f"space_invaders/assets/images/{n:03}.png" for n in range(100, 103)]
-RACKET_WIDTH = 80
-RACKET_HEIGHT = 80
-RACKET_RATE = 6
-RACKET_VELOCITY = 7
+# SHIP
+SHIP_GROUP = "ships"
+SHIP_IMAGES = [f"space_invaders/assets/images/{n:03}.png" for n in range(100, 103)]
+SHIP_WIDTH = 80
+SHIP_HEIGHT = 80
+SHIP_RATE = 6
+SHIP_VELOCITY = 7
 
-# BRICK
-BRICK_GROUP = "bricks"
-BRICK_IMAGES = {
+# ENEMY
+ENEMY_GROUP = "enemys"
+ENEMY_IMAGES = {
     "b": [f"space_invaders/assets/images/{i:03}.png" for i in range(10,19)],
     "g": [f"space_invaders/assets/images/{i:03}.png" for i in range(20,29)],
     "p": [f"space_invaders/assets/images/{i:03}.png" for i in range(30,39)],
     "y": [f"space_invaders/assets/images/{i:03}.png" for i in range(40,49)]
 }
-BRICK_WIDTH = 80
-BRICK_HEIGHT = 112
-BRICK_DELAY = 0.5
-BRICK_RATE = 4
-BRICK_POINTS = 50
-BRICK_VELOCITY = 1
+ENEMY_WIDTH = 80
+ENEMY_HEIGHT = 112
+ENEMY_DELAY = 0.5
+ENEMY_RATE = 4
+ENEMY_POINTS = 50
+ENEMY_VELOCITY = 1
 
 # DIALOG
 DIALOG_GROUP = "dialogs"

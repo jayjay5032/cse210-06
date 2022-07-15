@@ -4,11 +4,11 @@ from game.casting.actor import Actor
 from game.casting.point import Point
 
 
-class Brick(Actor):
+class Enemy(Actor):
     """A solid, rectangular object that can be broken."""
 
     def __init__(self, body, animation, points, debug = False):
-        """Constructs a new Brick.
+        """Constructs a new Enemy.
         
         Args:
             body: A new instance of Body.
@@ -21,7 +21,7 @@ class Brick(Actor):
         self._points = points
         
     def get_animation(self):
-        """Gets the brick's image.
+        """Gets the enemy's image.
         
         Returns:
             An instance of Image.
@@ -29,7 +29,7 @@ class Brick(Actor):
         return self._animation
 
     def get_body(self):
-        """Gets the brick's body.
+        """Gets the enemy's body.
         
         Returns:
             An instance of Body.
@@ -37,36 +37,36 @@ class Brick(Actor):
         return self._body
 
     def get_points(self):
-        """Gets the brick's points.
+        """Gets the enemy's points.
         
         Returns:
-            A number representing the brick's points.
+            A number representing the enemy's points.
         """
         return self._points
 
     def move_next(self):
-        """Moves the bricks using its velocity."""
+        """Moves the enemys using its velocity."""
         position = self._body.get_position()
         velocity = self._body.get_velocity()
         new_position = position.add(velocity)
         self._body.set_position(new_position)
 
     def swing_left(self):
-        """Steers the bricks to the left."""
-        velocity = Point(-BRICK_VELOCITY, 0)
+        """Steers the enemys to the left."""
+        velocity = Point(-ENEMY_VELOCITY, 0)
         self._body.set_velocity(velocity)
         
     def swing_right(self):
-        """Steers the bricks to the right."""
-        velocity = Point(BRICK_VELOCITY, 0)
+        """Steers the enemys to the right."""
+        velocity = Point(ENEMY_VELOCITY, 0)
         self._body.set_velocity(velocity)
     
     def stop_moving(self):
-        """Stops the bricks from moving."""
+        """Stops the enemys from moving."""
         velocity = Point(0, 0)
         self._body.set_velocity(velocity)
         
     def release(self):
-        """Release the bricks in a random direction."""
-        velocity = Point(BRICK_VELOCITY, 0)
+        """Release the enemys in a random direction."""
+        velocity = Point(ENEMY_VELOCITY, 0)
         self._body.set_velocity(velocity)
