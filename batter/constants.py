@@ -30,6 +30,7 @@ FONT_LARGE = 48
 BOUNCE_SOUND = "batter/assets/sounds/boing.wav" 
 WELCOME_SOUND = "batter/assets/sounds/start.wav"
 OVER_SOUND = "batter/assets/sounds/over.wav"
+EXPLODE_SOUND = "batter/assets/sounds/explode.wav"
 
 # TEXT
 ALIGN_CENTER = 0

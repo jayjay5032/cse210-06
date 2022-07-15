@@ -13,11 +13,12 @@ class CollideBordersAction(Action):
         body = ball.get_body()
         position = body.get_position()
         y = position.get_y()
-        bounce_sound = Sound(BOUNCE_SOUND)
+
                 
         if y < FIELD_TOP - ((BALL_HEIGHT + HUD_MARGIN)*3):
             cast.remove_actor(BALL_GROUP, ball)
-            self._audio_service.play_sound(bounce_sound)
+            explode_sound = Sound(EXPLODE_SOUND)
+            self._audio_service.play_sound(explode_sound)
             stats = cast.get_first_actor(STATS_GROUP)
             stats.lose_life()
             
