@@ -63,7 +63,7 @@ class SceneManager:
     MOVE_BALL_ACTION = MoveBallAction()
     MOVE_BRICKS_ACTION = MoveBricksAction()
     MOVE_RACKET_ACTION = MoveRacketAction()
-    RELOAD_BALL_ACTION = ReloadBallAction()
+    RELOAD_BALL_ACTION = ReloadBallAction(KEYBOARD_SERVICE)
     RELEASE_DEVICES_ACTION = ReleaseDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     START_DRAWING_ACTION = StartDrawingAction(VIDEO_SERVICE)
     UNLOAD_ASSETS_ACTION = UnloadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
@@ -132,6 +132,7 @@ class SceneManager:
         cast.clear_actors(DIALOG_GROUP)
 
         script.clear_actions(INPUT)
+        script.add_action(INPUT, self.RELOAD_BALL_ACTION)
         script.add_action(INPUT, self.CONTROL_RACKET_ACTION)
         self._add_update_script(script)
         self._add_output_script(script)
@@ -287,5 +288,4 @@ class SceneManager:
         script.add_action(UPDATE, self.COLLIDE_RACKET_ACTION)
         script.add_action(UPDATE, self.MOVE_BRICKS_ACTION)
         script.add_action(UPDATE, self.MOVE_RACKET_ACTION)
-        script.add_action(UPDATE, self.RELOAD_BALL_ACTION)
         script.add_action(UPDATE, self.CHECK_OVER_ACTION)

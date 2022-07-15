@@ -6,6 +6,9 @@ from game.casting.image import Image
 from game.casting.point import Point
 
 class ReloadBallAction(Action):
+
+    def __init__(self, keyboard_service):
+        self._keyboard_service = keyboard_service
     
     def execute(self, cast, script, callback):  
         x = cast.get_first_actor(RACKET_GROUP).get_body().get_position().get_x() + (RACKET_WIDTH/2) - (BALL_WIDTH/2)
@@ -17,4 +20,5 @@ class ReloadBallAction(Action):
         image = Image(BALL_IMAGE)
         ball = Ball(body, image, True)
         cast.add_actor(BALL_GROUP, ball)
-        ball.release()
+        if self._keyboard_service.is_key_down(SPACE):
+            ball.release()
