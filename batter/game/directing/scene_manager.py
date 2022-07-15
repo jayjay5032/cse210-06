@@ -154,7 +154,6 @@ class SceneManager:
     
     def _activate_ball(self, cast):
         ball = cast.get_first_actor(BALL_GROUP)
-        ball.release()
 
     def _activate_brick(self, cast):
         bricks = cast.get_actors(BRICK_GROUP)
